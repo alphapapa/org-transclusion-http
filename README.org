@@ -1,0 +1,28 @@
+#+options: num:nil toc:t author:nil html-postamble:nil
+# Sourcehut HTML renderer will render <style>: remove it
+#+options: html-style:nil
+#+html_head: ""
+
+#+title: org-transclusion-http
+
+Transclude content over HTTP in Org mode
+
+* Installation
+
+** package-vc
+
+#+begin_src emacs-lisp
+    (unless (package-installed-p 'org-transclusion-http)
+      (package-vc-install "https://git.sr.ht/~ushin/org-transclusion-http"))
+#+end_src
+
+* Bugs and Patches
+
+Bugs can be submitted to the [[https://todo.sr.ht/~ushin/ushin][ushin issue tracker]].  Patches, comments or
+questions can be submitted to the [[https://lists.sr.ht/~ushin/ushin][ushin public inbox]].
+
+* Changelog
+
+** 0.1-pre
+
+Nothing yet...

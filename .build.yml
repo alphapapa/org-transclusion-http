@@ -1,0 +1,12 @@
+image: archlinux
+oauth: git.sr.ht/REPOSITORIES:RW git.sr.ht/PROFILE:RO
+packages:
+  - hut
+  - emacs-nox
+sources:
+  - https://git.sr.ht/~ushin/org-transclusion-http
+tasks:
+  - update-readme: |
+      cd org-transclusion-http
+      emacs -Q --script build-readme.el
+      hut git update --readme README.html
