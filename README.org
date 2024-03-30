@@ -1,7 +1,6 @@
 #+options: num:nil toc:t author:nil html-postamble:nil
 # Sourcehut HTML renderer will render <style>: remove it
 #+options: html-style:nil
-#+html_head: ""
 
 #+title: org-transclusion-http
 
