@@ -15,6 +15,13 @@ Transclude content over HTTP in Org mode
       (package-vc-install "https://git.sr.ht/~ushin/org-transclusion-http"))
 #+end_src
 
+* Limitations
+
+Certain features of ~org-transclusion~, such as live-syncing and opening
+source buffers, are not supported.
+
+~:lines~ are not yet supported.  Patches welcome!
+
 * Bugs and Patches
 
 Bugs can be submitted to the [[https://todo.sr.ht/~ushin/ushin][ushin issue tracker]].  Patches, comments or
