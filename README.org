@@ -4,15 +4,15 @@
 
 #+title: org-transclusion-http
 
-Transclude content over HTTP in Org mode
+Transclude content over HTTP in Org mode with [[https://nobiot.github.io/org-transclusion/][org-transclusion]]!
 
 * Installation
 
 ** package-vc
 
 #+begin_src emacs-lisp
-    (unless (package-installed-p 'org-transclusion-http)
-      (package-vc-install "https://git.sr.ht/~ushin/org-transclusion-http"))
+  (unless (package-installed-p 'org-transclusion-http)
+    (package-vc-install "https://git.sr.ht/~ushin/org-transclusion-http"))
 #+end_src
 
 * Limitations
