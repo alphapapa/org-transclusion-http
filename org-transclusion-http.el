@@ -82,7 +82,7 @@ arguments LINK and PLIST."
                 (dom-print (org-transclusion-html--target-content dom target)))
               (org-transclusion--insert-org-from-html-with-pandoc)
               ;; Use "org-http" `tc-type' since HTML is converted to Org mode.
-              (setf tc-type "org-http")))
+              (setf tc-type "org-html-http")))
            ((org-transclusion-org-file-p filename) ; Org-mode
             ;; FIXME: filename may contain a query string, so it may not end
             ;; with "org" or "org.gpg".  For example,
