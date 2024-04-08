@@ -53,6 +53,8 @@ To improve ~org-transclusion~'s ability to determine which HTML elements
 to transclude based on the element its link fragment points to, please
 patch the ~org-transclusion-html.el~ file in ~org-transclusion~ itself.
 
+For more usage examples, please see the tests.
+
 * Limitations
 
 Certain features of ~org-transclusion~, such as live-syncing and opening
