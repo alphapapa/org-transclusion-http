@@ -63,8 +63,9 @@ arguments LINK and PLIST."
 (add-hook 'org-transclusion-add-functions #'org-transclusion-http-add)
 
 (defun org-transclusion-http--add-file (link plist copy)
-  "Load HTTP file at LINK and call
-`org-transclusion-add-callback' with PAYLOAD, LINK, PLIST, COPY."
+  "Load HTTP file at LINK.
+Then call `org-transclusion-add-callback' with PAYLOAD, LINK,
+PLIST, COPY."
   (pcase-let* ((target-mkr (point-marker))
                (url (org-element-property :raw-link link))
                ((cl-struct url filename target) (url-generic-parse-url url))
