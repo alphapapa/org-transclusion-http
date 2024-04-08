@@ -48,6 +48,7 @@
 
 ;;;; Functions
 
+;;;###autoload
 (defun org-transclusion-http-add (link _plist)
   "Return callback function when HTTP transclusion is appropriate.
 Otherwise, return nil.  Intended to be added to
