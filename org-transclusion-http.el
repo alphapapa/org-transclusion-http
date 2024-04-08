@@ -48,7 +48,7 @@
 
 ;;;; Functions
 
-(defun org-transclusion-http-add-file (link _plist)
+(defun org-transclusion-http-add (link _plist)
   "Return callback function when HTTP transclusion is appropriate.
 Otherwise, return nil.  Intended to be added to
 `org-transclusion-add-functions', which see for descriptions of
@@ -57,11 +57,11 @@ arguments LINK and PLIST."
     ((or "http" "https")
      (message "Asynchronously transcluding over HTTP at point %d, line %d..."
               (point) (org-current-line))
-     #'org-transclusion-http-add-callback)))
+     #'org-transclusion-http--add-file)))
 
-(add-hook 'org-transclusion-add-functions #'org-transclusion-http-add-file)
+(add-hook 'org-transclusion-add-functions #'org-transclusion-http-add)
 
-(defun org-transclusion-http-add-callback (link plist copy)
+(defun org-transclusion-http--add-file (link plist copy)
   "Load HTTP file at LINK and call
 `org-transclusion-add-callback' with PAYLOAD, LINK, PLIST, COPY."
   (pcase-let* ((target-mkr (point-marker))
