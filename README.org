@@ -69,6 +69,6 @@ questions can be submitted to the [[https://lists.sr.ht/~ushin/ushin][ushin publ
 
 * Changelog
 
-** 0.1-pre
+** 0.1
 
-Nothing yet...
+Initial release.
