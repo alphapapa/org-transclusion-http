@@ -1,0 +1,3 @@
+[submodule "makem"]
+	path = makem
+	url = https://github.com/alphapapa/makem.sh
