@@ -1,0 +1,10 @@
+/*.elc
+/.sandbox/
+/.dir-locals-2.el
+*.elc
+/worktrees/
+/org-transclusion-http-autoloads.el
+/org-transclusion-http-pkg.el
+/dir
+/doc/org-transclusion-http.info
+/org-transclusion-http.info
