@@ -50,7 +50,7 @@
 
 ;;;###autoload
 (defun org-transclusion-http-add (link _plist)
-  "Return callback function when HTTP transclusion is appropriate.
+  "Return handler function when HTTP transclusion is appropriate.
 Otherwise, return nil.  Intended to be added to
 `org-transclusion-add-functions', which see for descriptions of
 arguments LINK and PLIST."
@@ -64,7 +64,7 @@ arguments LINK and PLIST."
 
 (defun org-transclusion-http--add-file (link plist copy)
   "Load HTTP file at LINK.
-Then call `org-transclusion-add-callback' with PAYLOAD, LINK,
+Then call `org-transclusion-add-payload' with PAYLOAD, LINK,
 PLIST, COPY."
   (pcase-let* ((target-mkr (point-marker))
                (url (org-element-property :raw-link link))
@@ -105,7 +105,7 @@ PLIST, COPY."
             (with-current-buffer target-buf
               (org-with-wide-buffer
                (goto-char (marker-position target-mkr))
-               (org-transclusion-add-callback payload link plist copy))))))
+               (org-transclusion-add-payload payload link plist copy))))))
       :else (lambda (err)
               (let ((buf (get-buffer-create (format "*org-transclusion-http-error %s" url))))
                 (with-current-buffer buf
