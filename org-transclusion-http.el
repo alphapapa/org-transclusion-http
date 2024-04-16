@@ -83,7 +83,7 @@ PLIST, COPY."
                 (erase-buffer)
                 (dom-print (org-transclusion-html--target-content dom target)))
               (org-transclusion--insert-org-from-html-with-pandoc)
-              ;; Use "org-http" `tc-type' since HTML is converted to Org mode.
+              ;; Use "org"-prefixed `tc-type' since HTML is converted to Org mode.
               (setf tc-type "org-html-http")))
            ((org-transclusion-org-file-p filename) ; Org-mode
             ;; FIXME: filename may contain a query string, so it may not end
