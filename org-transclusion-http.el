@@ -70,8 +70,7 @@ PLIST, COPY."
                (url (org-element-property :raw-link link))
                ((cl-struct url filename target) (url-generic-parse-url url))
                (tc-type))
-    (plz 'get url
-      :as 'buffer
+    (plz 'get url :noquery t :as 'buffer
       :then
       (lambda (_response-buffer)
         (when-let ((target-buf (marker-buffer target-mkr)))
