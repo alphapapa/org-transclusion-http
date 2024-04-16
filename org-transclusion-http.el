@@ -106,7 +106,7 @@ PLIST, COPY."
                (goto-char (marker-position target-mkr))
                (org-transclusion-add-payload payload link plist copy))))))
       :else (lambda (err)
-              (let ((buf (get-buffer-create (format "*org-transclusion-http-error %s" url))))
+              (let ((buf (get-buffer-create (format "*org-transclusion-http-error <%s>" url))))
                 (with-current-buffer buf
                   (erase-buffer)
                   (princ err (current-buffer)))
