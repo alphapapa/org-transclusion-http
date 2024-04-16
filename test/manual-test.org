@@ -15,3 +15,6 @@
 
 # id="autocapitalize" points to <dt>:  Transclude <dt> and subsequent <dd>.
 #+transclude: [[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#autocapitalize]]
+
+# Malformed URL:  Put the error in a buffer and produce a message.
+#+transclude: [[https://malformed-url]]

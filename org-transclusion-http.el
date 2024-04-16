@@ -105,7 +105,14 @@ PLIST, COPY."
             (with-current-buffer target-buf
               (org-with-wide-buffer
                (goto-char (marker-position target-mkr))
-               (org-transclusion-add-callback payload link plist copy)))))))))
+               (org-transclusion-add-callback payload link plist copy))))))
+      :else (lambda (err)
+              (let ((buf (get-buffer-create (format "*org-transclusion-http-error %s" url))))
+                (with-current-buffer buf
+                  (erase-buffer)
+                  (princ err (current-buffer)))
+                (message "org-transclusion-http: Unable to transclude content at <%s>.  Please open %S for details."
+                         url buf))))))
 
 ;;;; Footer
 
