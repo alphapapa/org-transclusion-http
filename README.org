@@ -1,25 +1,25 @@
 #+options: num:nil toc:nil author:nil html-postamble:nil
 
-#+title: org-transclusion-http
+* org-transclusion-http
 
 Transclude content over HTTP in Org mode with [[https://nobiot.github.io/org-transclusion/][org-transclusion]]!
 
-* Installation
+** Installation
 
-** Dependencies
+*** Dependencies
 
 ~org-transclusion-http~ uses [[https://pandoc.org/][Pandoc]] to render HTML content as Org mode,
 so to make full use of this package please ensure that the ~pandoc~
 command is installed and in your ~PATH~.
 
-** package-vc
+*** package-vc
 
 #+begin_src emacs-lisp
   (unless (package-installed-p 'org-transclusion-http)
     (package-vc-install "https://git.sr.ht/~ushin/org-transclusion-http"))
 #+end_src
 
-* Usage
+** Usage
 
 Add an ~org-transclusion~ link to an Org mode buffer:
 
@@ -36,7 +36,7 @@ rendered as-is.
 
 For more information on ~org-transclusion~, please see the [[https://nobiot.github.io/org-transclusion/][~org-transclusion~ manual]].
 
-** Transclude only content at HTML link fragment
+*** Transclude only content at HTML link fragment
 
 When the ~#+transclude:~ link contains a link fragment, also known as an
 anchor or target, ~org-transclusion-http~ attempts to guess which HTML
@@ -53,24 +53,24 @@ patch the ~org-transclusion-html.el~ file in ~org-transclusion~ itself.
 
 For more usage examples, please see the tests.
 
-* Limitations
+** Limitations
 
 Certain features of ~org-transclusion~, such as live-syncing and opening
 source buffers, are not supported.
 
 ~:lines~ are not yet supported.  Patches welcome!
 
-* Bugs and Patches
+** Bugs and Patches
 
 Bugs can be submitted to the [[https://todo.sr.ht/~ushin/ushin][ushin issue tracker]].  Patches, comments or
 questions can be submitted to the [[https://lists.sr.ht/~ushin/ushin][ushin public inbox]].
 
-* Changelog
+** Changelog
 
-** pre-0.2
+*** pre-0.2
 
 Nothing yet...
 
-** 0.1
+*** 0.1
 
 Initial release.
