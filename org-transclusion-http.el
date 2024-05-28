@@ -92,7 +92,7 @@ PLIST, COPY."
             (when target
               (org-mode)
               (let ((org-link-search-must-match-exact-headline t))
-                (when (with-demoted-errors "org-transclusion-http error:\n%s\ntranscluding whole file..."
+                (when (with-demoted-errors "org-transclusion-http: Transcluding whole file due to %S"
                         (org-link-search (format "#%s" target)))
                   (org-narrow-to-subtree))))
             (setf tc-type "org-http"))
