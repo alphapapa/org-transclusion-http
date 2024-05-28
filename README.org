@@ -4,19 +4,22 @@
 
 Transclude content over HTTP in Org mode with [[https://nobiot.github.io/org-transclusion/][org-transclusion]]!
 
-** Installation
-
-*** Dependencies
+** Dependencies
 
 ~org-transclusion-http~ uses [[https://pandoc.org/][Pandoc]] to render HTML content as Org mode,
 so to make full use of this package please ensure that the ~pandoc~
 command is installed and in your ~PATH~.
 
-*** package-vc
+** Installation
+
+Install ~org-transclusion-http~ with ~M-x package-install RET
+org-transclusion-http~ and then add the following snippet to your
+configuration:
 
 #+begin_src emacs-lisp
-  (unless (package-installed-p 'org-transclusion-http)
-    (package-vc-install "https://git.sr.ht/~ushin/org-transclusion-http"))
+  (with-eval-after-load 'org-transclusion
+    (add-to-list 'org-transclusion-extensions 'org-transclusion-http)
+    (require 'org-transclusion-http))
 #+end_src
 
 ** Usage
