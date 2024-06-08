@@ -70,41 +70,58 @@ PLIST, COPY."
                (url (org-element-property :raw-link link))
                ((cl-struct url filename target) (url-generic-parse-url url))
                (tc-type))
-    (plz 'get url :noquery t :as 'buffer
-      :then
-      (lambda (_response-buffer)
-        (when-let ((target-buf (marker-buffer target-mkr)))
-          (cond
-           ((org-transclusion-html--html-p (current-buffer))  ; HTML
-            (let ((dom (libxml-parse-html-region)))
-              (when (dom-by-id dom (format "\\`%s\\'" target))
-                ;; Page contains id element matching link target.
-                (erase-buffer)
-                (dom-print (org-transclusion-html--target-content dom target)))
-              (org-transclusion--insert-org-from-html-with-pandoc)
-              ;; Use "org"-prefixed `tc-type' since HTML is converted to Org mode.
-              (setf tc-type "org-html-http")))
-           ((org-transclusion-org-file-p filename) ; Org-mode
-            ;; FIXME: filename may contain a query string, so it may not end
-            ;; with "org" or "org.gpg".  For example,
-            ;; https://example.com/foobar.org?query=answer has the filename
-            ;; /foobar.org?query=answer and therefore doesn't match.
-            (when target
-              (org-mode)
-              (let ((org-link-search-must-match-exact-headline t))
-                (when (with-demoted-errors "org-transclusion-http: Transcluding whole file due to %S"
-                        (org-link-search (format "#%s" target)))
-                  (org-narrow-to-subtree))))
-            (setf tc-type "org-http"))
-           (t  ; All other file types
-            (setf tc-type "others-http")))
-          (let* ((payload-without-type
-                  (org-transclusion-content-org-buffer-or-element nil plist))
-                 (payload (append `(:tc-type ,tc-type) payload-without-type)))
-            (with-current-buffer target-buf
-              (org-with-wide-buffer
-               (goto-char (marker-position target-mkr))
-               (org-transclusion-add-payload payload link plist copy))))))
+    ;; TODO: When plz adds ":as 'response-with-buffer", use that.
+    (plz 'get url :noquery t :as 'response :then
+      (lambda (response)
+        (pcase-let (((cl-struct plz-response body (headers (map content-type))) response)
+                    (target-buf (marker-buffer target-mkr)))
+          (when target-buf
+            (with-temp-buffer
+              (insert body)
+              (goto-char (point-min))
+              (pcase content-type
+                ((or (rx bos "text/html")
+                     (and (or (rx bos "application/octet-stream")
+                              'nil)
+                          (guard (org-transclusion-html--html-p (current-buffer)))))
+                 ;; Server declares the content is HTML, or server did
+                 ;; not specify a type but it appears to be HTML.
+                 (unless (executable-find "pandoc")
+                   (error "org-transclusion-http-add: Can't find \"pandoc\" executable"))
+                 (let ((dom (libxml-parse-html-region (point-min) (point-max))))
+                   (when (dom-by-id dom (format "\\`%s\\'" target))
+                     ;; Page contains id element matching link target.
+                     (erase-buffer)
+                     (dom-print (org-transclusion-html--target-content dom target)))
+                   (org-transclusion--insert-org-from-html-with-pandoc)
+                   ;; Use "org"-prefixed `tc-type' since HTML is converted to Org mode.
+                   (setf tc-type "org-html-http")))
+                ((or (rx bos "application/vnd.lotus-organizer")
+                     (and (or (rx bos "application/octet-stream")
+                              'nil)
+                          ;; FIXME: filename may contain a query string, so it may not end
+                          ;; with "org" or "org.gpg".  For example,
+                          ;; https://example.com/foobar.org?query=answer has the filename
+                          ;; /foobar.org?query=answer and therefore doesn't match.
+                          (guard (org-transclusion-org-file-p filename))))
+                 ;; Appears to be an Org-mode file.
+                 (when target
+                   (org-mode)
+                   (let ((org-link-search-must-match-exact-headline t))
+                     (when (with-demoted-errors "org-transclusion-http: Transcluding whole file due to %S"
+                             (org-link-search (format "#%s" target)))
+                       (org-narrow-to-subtree))))
+                 (setf tc-type "org-http"))
+                (_
+                 ;; All other file types.
+                 (setf tc-type "others-http")))
+              (let* ((payload-without-type
+                      (org-transclusion-content-org-buffer-or-element nil plist))
+                     (payload (append `(:tc-type ,tc-type) payload-without-type)))
+                (with-current-buffer target-buf
+                  (org-with-wide-buffer
+                   (goto-char (marker-position target-mkr))
+                   (org-transclusion-add-payload payload link plist copy))))))))
       :else (lambda (err)
               (let ((buf (get-buffer-create (format "*org-transclusion-http-error <%s>" url))))
                 (with-current-buffer buf
