@@ -74,7 +74,7 @@ questions can be submitted to the [[https://lists.sr.ht/~ushin/ushin][ushin publ
 
 ** Changelog
 
-*** pre-0.2
+*** 0.2
 
 **** Change
 
