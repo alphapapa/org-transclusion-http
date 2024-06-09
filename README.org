@@ -68,6 +68,10 @@ source buffers, are not supported.
 Bugs can be submitted to the [[https://todo.sr.ht/~ushin/ushin][ushin issue tracker]].  Patches, comments or
 questions can be submitted to the [[https://lists.sr.ht/~ushin/ushin][ushin public inbox]].
 
+** Acknowledgments
+
+- [[https://github.com/alphapapa/][Adam Porter]] for code review and bug fixes.
+
 ** Changelog
 
 *** pre-0.2
