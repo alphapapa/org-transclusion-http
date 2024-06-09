@@ -72,7 +72,19 @@ questions can be submitted to the [[https://lists.sr.ht/~ushin/ushin][ushin publ
 
 *** pre-0.2
 
-Nothing yet...
+**** Change
+
+- Better error message when ~pandoc~ is not available.
+
+**** Fix
+
+- Don't prompt to stop HTTP transclusion process when killing Emacs.
+
+**** Internal
+
+- Better recognition of Org and HTML documents.
+- Update to match upstream ~org-transclusion~ API.
+- More tests.
 
 *** 0.1
 
