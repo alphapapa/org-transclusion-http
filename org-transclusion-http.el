@@ -87,7 +87,8 @@ PLIST, COPY."
                  ;; Server declares the content is HTML, or server did
                  ;; not specify a type but it appears to be HTML.
                  (unless (executable-find "pandoc")
-                   (error "org-transclusion-http-add: Can't find \"pandoc\" executable"))
+                   (error "org-transclusion-http: Unable to transclude content at <%s>:  Can't find \"pandoc\" executable"
+                          url))
                  (let ((dom (libxml-parse-html-region (point-min) (point-max))))
                    (when (dom-by-id dom (format "\\`%s\\'" target))
                      ;; Page contains id element matching link target.
