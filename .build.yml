@@ -8,5 +8,5 @@ sources:
 tasks:
   - update-readme: |
       cd org-transclusion-http
-      emacs -Q --script build-readme.el
+      make README.html
       hut git update --readme README.html
