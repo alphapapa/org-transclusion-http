@@ -71,6 +71,7 @@ questions can be submitted to the [[https://lists.sr.ht/~ushin/ushin][ushin publ
 ** Acknowledgments
 
 - [[https://github.com/alphapapa/][Adam Porter]] for code review and bug fixes.
+- [[https://amodernist.com/][Philip Kaludercic]] for code review.
 
 ** Changelog
 
