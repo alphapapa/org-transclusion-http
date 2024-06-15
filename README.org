@@ -76,7 +76,9 @@ questions can be submitted to the [[https://lists.sr.ht/~ushin/ushin][ushin publ
 
 *** 0.3-pre
 
-Nothing yet...
+**** Internal
+
+- Prepare for NonGNU ELPA submission.
 
 *** 0.2
 
