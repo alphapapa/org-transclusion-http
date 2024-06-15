@@ -25,8 +25,8 @@
 
 ;;; Commentary:
 
-;; This file contains functionality related to transcluding content over HTTP
-;; using plz.el.  Features include:
+;; This file extends the `org-transclusion' package to allow for transcluding
+;; content over HTTP.  Features include:
 ;;
 ;; - Transclude plain text
 ;;   + Transclude only Org headings matching search options
