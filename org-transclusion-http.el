@@ -5,7 +5,7 @@
 ;; Author: Joseph Turner <first name at ushin.org>
 ;; Maintainer: Joseph Turner <~ushin/ushin@lists.sr.ht>
 ;; Created: 2024
-;; Version: 0.3
+;; Version: 0.4-pre
 ;; Package-Requires: ((emacs "28.1") (org-transclusion "1.4.0") (plz "0.7.2"))
 ;; Homepage: https://git.sr.ht/~ushin/org-transclusion-http
 
